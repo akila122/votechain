@@ -1,0 +1,27 @@
+<div>
+  <ngx-charts-bar-vertical
+    *ngIf="data"
+    [view]="view"
+    [scheme]="colorScheme"
+    [results]="data.data"
+    [gradient]="gradient"
+    [xAxis]="showXAxis"
+    [yAxis]="showYAxis"
+    [legend]="showLegend"
+    [showXAxisLabel]="showXAxisLabel"
+    [showYAxisLabel]="showYAxisLabel"
+    [xAxisLabel]="xAxisLabel"
+    [yAxisLabel]="yAxisLabel"
+    (select)="onSelect($event)"
+  >
+  </ngx-charts-bar-vertical>
+</div>
+<div>
+    Results for {{ data.info.name }} started on {{ data.info.dateCreated  | date: 'dd/MM/yyyy'}} by
+    {{ data.info.createdBy }}.
+  <p *ngIf="data.info.closed">
+    Voting has been closed on {{ data.info.dateClosed  | date: 'dd/MM/yyyy' }} by
+    {{ data.info.closedBy }}.
+  </p>
+  <p *ngIf="!data.info.closed">Voting has not yet been closed.</p>
+</div>

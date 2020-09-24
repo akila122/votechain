@@ -1,0 +1,93 @@
+<mat-tab-group class="container" mat-align-tabs="center">
+  <mat-tab>
+    <ng-template mat-tab-label>
+      <mat-icon>how_to_vote</mat-icon> Vote
+    </ng-template>
+    <form #fileForm=ngForm>
+      <div>
+        <mat-form-field>
+          <ngx-mat-file-input
+            #idFile
+            placeholder="VotingID"
+            (change)="f1($event.target)"
+          ></ngx-mat-file-input>
+          <mat-icon matSuffix>folder</mat-icon>
+        </mat-form-field>
+      </div>
+      <div>
+        <mat-chip-list *ngIf="canVote" aria-label="Voting options">
+          <mat-chip (click)="optionSelected(opt)" *ngFor="let opt of options">{{opt}}</mat-chip>
+        </mat-chip-list>
+      </div>
+      <div>
+        <mat-form-field *ngIf="canVote">
+          <ngx-mat-file-input 
+          #publicFile
+            placeholder="Public Key"
+            (change)="f2($event.target)"
+          ></ngx-mat-file-input>
+          <mat-icon matSuffix>folder</mat-icon>
+        </mat-form-field>
+      </div>
+      <div>
+        <mat-form-field *ngIf="canVote">
+          <ngx-mat-file-input 
+            #privateFile
+            placeholder="Private Key"
+            (change)="f3($event.target)"
+          ></ngx-mat-file-input>
+          <mat-icon matSuffix>folder</mat-icon>
+        </mat-form-field>
+      </div>
+      <div>
+        <table>
+          <tr>
+            <td>
+              <button mat-raised-button color="primary" (click)="vote()" [disabled] = "!(publicKey&&privateKey&&option)">
+                Vote
+              </button>
+            </td>
+            <td>
+              <mat-spinner *ngIf="spin" [diameter]="20"></mat-spinner>
+            </td>
+          </tr>
+          <tr>
+            <td *ngIf="msg1">
+              {{ msg1 }}
+            </td>
+          </tr>
+        </table>
+      </div>
+    </form>
+  </mat-tab>
+  <mat-tab>
+    <ng-template mat-tab-label>
+      <mat-icon>remove_red_eye</mat-icon> View voting results
+    </ng-template>
+    <div>
+      <mat-form-field>
+        <mat-label>Voting ID</mat-label>
+        <input matInput placeholder="Voting ID" [(ngModel)]="votingID" />
+      </mat-form-field>
+    </div>
+    <div>
+      <table>
+        <tr>
+          <td>
+            <button mat-raised-button color="primary" (click)="view()">
+              View
+            </button>
+          </td>
+          <td>
+            <mat-spinner *ngIf="spin" [diameter]="20"></mat-spinner>
+          </td>
+        </tr>
+        <tr>
+          <td *ngIf="msg2">
+            {{ msg2 }}
+          </td>
+        </tr>
+      </table>
+    </div>
+  </mat-tab>
+</mat-tab-group>

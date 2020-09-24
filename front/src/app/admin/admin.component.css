@@ -1,0 +1,33 @@
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+
+  }
+
+  ::ng-deep .mat-tab-header {
+    width: 100%;
+  }
+  ::ng-deep .mat-tab-body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    align-content: center;
+    width: 80%;
+    overflow: hidden;
+  }
+  ::ng-deep .mat-tab-body-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    align-content: center;
+    width: 80%;
+    overflow: hidden;
+  }
+
+  .example-chip-list {
+    width: 100%;
+  }
